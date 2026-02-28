@@ -1,0 +1,28 @@
+[project]
+name = "api-bank-django"
+version = "1.0.0"
+description = "Refactored API Bank from Node.js to Django"
+authors = [
+    { name = "Romina Cardozo", email = "rominacardozo2002py@gmail.com" }
+]
+dependencies = [
+    "django>=5.0",
+    "djangorestframework>=3.15.0",
+    "psycopg2-binary>=2.9.0",
+    "django-environ>=0.11.0",
+    "django-cors-headers>=4.3.0",
+    "celery>=5.3.0",
+    "redis>=5.0.0",
+    "drf-spectacular>=0.27.0",
+    "gunicorn>=25.1.0",
+    "waitress>=3.0.2",
+]
+requires-python = ">=3.10"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.uv]
+managed = true
+package = false
