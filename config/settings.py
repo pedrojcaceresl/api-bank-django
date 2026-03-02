@@ -127,6 +127,9 @@ SPECTACULAR_SETTINGS = {
 # CORS configuration
 CORS_ALLOW_ALL_ORIGINS = True # Adjust as needed
 
+# Evita redirecciones automáticas en POST cuando falta slash final.
+APPEND_SLASH = False
+
 # Celery Configuration
 CELERY_BROKER_URL = env('REDIS_URL', default='redis://localhost:6379/0')
 CELERY_RESULT_BACKEND = env('REDIS_URL', default='redis://localhost:6379/0')
