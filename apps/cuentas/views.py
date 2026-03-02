@@ -43,6 +43,14 @@ class CuentaDetailView(APIView):
         except Exception as e:
             return Response({"error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
+
+class CuentaSaldoView(APIView):
+    def get(self, request, id):
+        cuenta = obtener_cuenta_por_id(id)
+        if not cuenta:
+            return Response({"error": "Cuenta no encontrada"}, status=status.HTTP_404_NOT_FOUND)
+        return Response({"saldo": str(cuenta.saldo)})
+
 # Tipo Cuenta Views
 class TipoCuentaListCreateView(APIView):
     def get(self, request):
