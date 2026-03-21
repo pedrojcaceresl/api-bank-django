@@ -89,7 +89,18 @@ services:
     command:
       - "sh"
       - "-c"
-      - "until python manage.py migrate --noinput; do echo 'Retry migrate in 2s...'; sleep 2; done"
+      - |
+        max_retries=30
+        attempt=1
+        until python manage.py migrate --noinput --fake-initial; do
+          if [ "$$attempt" -ge "$$max_retries" ]; then
+            echo "Migration failed after $$max_retries attempts"
+            exit 1
+          fi
+          echo "Retry migrate in 2s... ($$attempt/$$max_retries)"
+          attempt=$$((attempt+1))
+          sleep 2
+        done
     depends_on:
       - postgres
 

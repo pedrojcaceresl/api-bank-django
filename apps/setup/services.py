@@ -18,7 +18,10 @@ def crear_dataset(cantidad=10):
     
     created_clientes = []
     created_cuentas = []
-    saldo_inicial = Decimal("1000.00")
+    saldo_inicial = Decimal("1000000.00")
+
+    # Rehidrata saldo de cuentas existentes para que cada corrida parta de una base estable.
+    Cuenta.objects.all().update(saldo=saldo_inicial)
     
     for i in range(cantidad):
         timestamp = int(time.time() * 1000)
